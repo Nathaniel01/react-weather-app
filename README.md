@@ -1,5 +1,6 @@
 # react-weather-app
-This is a light weight and responsive web application that works with the weather API located at https://www.metaweather.com/api/
+This is a light weight and responsive web application that works with the weather API located at https://www.metaweather.com/api/.
+
 The front-end was built using ReactJS, HTML5, CSS. 
 
 The user can specify a place in the world from the front-end by typing in a location name (such as London) into a text field which offers typeahead functionality and auto suggests major cities. 
