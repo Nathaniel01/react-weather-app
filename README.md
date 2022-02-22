@@ -1,4 +1,4 @@
-# react-weather-app
+# React Weather App
 This is a light weight and responsive web application that works with the weather API located at https://www.metaweather.com/api/.
 
 The front-end was built using ReactJS, HTML5, CSS. 
