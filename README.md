@@ -1,5 +1,5 @@
 # React Weather App
-This is a light weight and responsive web application that works with the weather API located at https://www.metaweather.com/api/.
+This is a light weight and responsive web application that works with the weather API located at https://api.openweathermap.org.
 
 The front-end was built using ReactJS, HTML5, CSS. 
 
