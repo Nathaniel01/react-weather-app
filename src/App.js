@@ -60,7 +60,7 @@ function App(props) {
   const filterBy = ['name', 'country'];
 
    const searchLocation = async (city) => {
-     let response = await axios.get(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=693cf682c5a982d522e312cbc8b38a3a`);
+     let response = await axios.get(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=693cf682c5a982d522e312cbc8b38a3a999&units=metric`);
      console.log( 'Weather', response.data.list)
      console.log('The value', response.data.list[0].main.temp)
      let weatherResponse = {
@@ -72,18 +72,23 @@ function App(props) {
 
        // Day 1
        day_1_temp: response.data.list[8].main.temp,
+       day_1_day: response.data.list[8].dt_txt,
 
        //Day 2
-       day_2_temp: response.data.list[16].main.temp, 
+       day_2_temp: response.data.list[16].main.temp,
+       day_2_day: response.data.list[16].dt_txt, 
 
        //Day 3
        day_3_temp: response.data.list[24].main.temp,
+       day_3_day: response.data.list[24].dt_txt,
 
        //Day 4
-       day_4_temp: response.data.list[32].main.temp, 
+       day_4_temp: response.data.list[32].main.temp,
+       day_4_day: response.data.list[32].dt_txt, 
 
        //day 5
-       day_5_temp: response.data.list[39].main.temp
+       day_5_temp: response.data.list[39].main.temp,
+       day_5_day: response.data.list[39].dt_txt,
      }
      setWeatherData(weatherResponse)
      setIsWeatherDataLoading(false)
@@ -118,7 +123,7 @@ function App(props) {
   const searchInfo = useCallback(async () => {
     console.log(options.name, 'location', weatherLocation);
     if(isLoading) return;
-    const response = await axios.get(`https://api.openweathermap.org/data/2.5/forecast?q=${options.name}&appid=693cf682c5a982d522e312cbc8b38a3a`);
+    //const response = await axios.get(`https://api.openweathermap.org/data/2.5/forecast?q=${options.name}&appid=693cf682c5a982d522e312cbc8b38a3a`);
     console.log('Weather', response);
     setData(response.data);
   }, []);
@@ -142,7 +147,7 @@ function App(props) {
                 </Bodytext>
               </div>
               <div className='temperature'>
-                <HeaderText>{ !isWeatherDataLoading && (weatherData.temp - 273.15)}&deg;C</HeaderText>
+                <HeaderText>{ !isWeatherDataLoading && Math.round(weatherData.temp)}&deg;C</HeaderText>
               </div>
               <div className='description'>
                 <Bodytext>{!isWeatherDataLoading && weatherData.description }</Bodytext>
@@ -186,28 +191,28 @@ function App(props) {
         <Container align="center" className='bottom'>
           <Row>
             <Col md={2}>
-              <Bodytext>Fri 21,</Bodytext>
-              <TempHead>{!isWeatherDataLoading && weatherData.day_1_temp} &deg;C</TempHead>
+              <Bodytext>{!isWeatherDataLoading && weatherData.day_1_day.substring(0, 10)}</Bodytext>
+              <TempHead>{!isWeatherDataLoading && Math.round(weatherData.day_1_temp) } &deg;C</TempHead>
               <Bodytext>Partly Sunny</Bodytext>
             </Col>
             <Col md={2}>
-            <Bodytext>Fri 22,</Bodytext>
-              <TempHead>{!isWeatherDataLoading && weatherData.day_2_temp} &deg;C</TempHead>
+            <Bodytext >{!isWeatherDataLoading && weatherData.day_2_day.substring(0, 10)}</Bodytext>
+              <TempHead>{!isWeatherDataLoading && Math.round(weatherData.day_2_temp)} &deg;C</TempHead>
               <Bodytext>Partly Sunny</Bodytext>
             </Col>
             <Col md={2}>
-            <Bodytext>Fri 23,</Bodytext>
-              <TempHead>{!isWeatherDataLoading && weatherData.day_3_temp} &deg;C</TempHead>
+            <Bodytext>{!isWeatherDataLoading && weatherData.day_3_day.substring(0, 10)}</Bodytext>
+              <TempHead>{!isWeatherDataLoading && Math.round(weatherData.day_3_temp)} &deg;C</TempHead>
               <Bodytext>Partly Sunny</Bodytext>
             </Col>
             <Col md={2}>
-            <Bodytext>Fri 24,</Bodytext>
-              <TempHead>{!isWeatherDataLoading && weatherData.day_4_temp} &deg;C</TempHead>
+            <Bodytext>{!isWeatherDataLoading && weatherData.day_4_day.substring(0, 10)}</Bodytext>
+              <TempHead>{!isWeatherDataLoading && Math.round(weatherData.day_4_temp)} &deg;C</TempHead>
               <Bodytext>Partly Sunny</Bodytext>
             </Col>
             <Col md={2}>
-            <Bodytext>Fri 25,</Bodytext>
-              <TempHead>{!isWeatherDataLoading && weatherData.day_5_temp} &deg;C</TempHead>
+            <Bodytext>{!isWeatherDataLoading && weatherData.day_5_day.substring(0, 10)}</Bodytext>
+              <TempHead>{!isWeatherDataLoading && Math.round(weatherData.day_5_temp)} &deg;C</TempHead>
               <Bodytext>Partly Sunny</Bodytext>
             </Col>
           </Row>
